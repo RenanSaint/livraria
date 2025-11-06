@@ -19,9 +19,17 @@ CREATE TABLE clientes (
 CREATE TABLE pedidos (
     id_pedido INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
+    data_pedido DATE NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+);
+
+-- Tabela de Itens do Pedido
+CREATE TABLE itens_pedido (
+    id_item INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT NOT NULL,
     id_livro INT NOT NULL,
     quantidade INT NOT NULL,
-    data_pedido DATE NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
     FOREIGN KEY (id_livro) REFERENCES livros(id_livro)
 );
